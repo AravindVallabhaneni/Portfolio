@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" fill="none">
+  <defs>
+    <linearGradient id="avatarBg" x1="0" y1="0" x2="600" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1117" />
+      <stop offset="0.5" stop-color="#161B22" />
+      <stop offset="1" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="600" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8" />
+      <stop offset="0.5" stop-color="#0284C7" />
+      <stop offset="1" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" rx="300" fill="url(#avatarBg)" />
+  <circle cx="300" cy="300" r="290" stroke="url(#ring)" stroke-width="6" stroke-dasharray="12 12" />
+  
+  <!-- Silhouette / Developer Avatar -->
+  <circle cx="300" cy="230" r="90" fill="#21262D" stroke="#38BDF8" stroke-width="4" />
+  <path d="M160 480C160 380 220 350 300 350C380 350 440 380 440 480" fill="#21262D" stroke="#38BDF8" stroke-width="4" />
+  
+  <!-- Monogram Initials -->
+  <text x="300" y="250" fill="#F0F6FC" font-family="'Space Grotesk', sans-serif" font-size="60" font-weight="700" text-anchor="middle">AV</text>
+  <text x="300" y="530" fill="#8B949E" font-family="monospace" font-size="20" text-anchor="middle">Aravind Vallabhaneni</text>
+</svg>
+

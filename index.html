@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Aravind Vallabhaneni | Full Stack Developer &amp; AI/ML</title>
+    <meta name="title" content="Aravind Vallabhaneni | Full Stack Developer &amp; AI/ML" />
+    <meta name="description" content="Fresher full-stack developer building production-grade web apps, from geospatial maps to AI-powered tools. B.Tech CSE at VIT-AP University." />
+    <meta name="keywords" content="Aravind Vallabhaneni, Full Stack Developer, MERN, React, Node.js, Express, Supabase, PostGIS, AI, Machine Learning, Portfolio, VIT-AP" />
+    <meta name="author" content="Aravind Vallabhaneni" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://aravindvallabhaneni.dev" />
+
+    <!-- Favicon & App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="theme-color" content="#0D1117" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aravindvallabhaneni.dev" />
+    <meta property="og:title" content="Aravind Vallabhaneni | Full Stack Developer &amp; AI/ML" />
+    <meta property="og:description" content="Fresher full-stack developer building production-grade web apps, from geospatial maps to AI-powered tools. Explore deployed projects and engineering highlights." />
+    <meta property="og:image" content="https://aravindvallabhaneni.dev/og-image.png" />
+    <meta property="og:image:alt" content="Aravind Vallabhaneni - Full Stack Developer Portfolio" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://aravindvallabhaneni.dev" />
+    <meta name="twitter:title" content="Aravind Vallabhaneni | Full Stack Developer &amp; AI/ML" />
+    <meta name="twitter:description" content="Fresher full-stack developer building production-grade web apps, from geospatial maps to AI-powered tools." />
+    <meta name="twitter:image" content="https://aravindvallabhaneni.dev/og-image.png" />
+
+    <!-- Preconnect & Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Preload Hero Poster -->
+    <link rel="preload" as="image" href="/media/aravind.jpg" fetchpriority="high" />
+
+    <!-- Dark/Light Theme Initialization (Zero Flash of Wrong Theme) -->
+    <script>
+      (function() {
+        try {
+          const stored = localStorage.getItem('portfolio-theme');
+          const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && systemDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- JSON-LD Structured Data for Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Aravind Vallabhaneni",
+        "alternateName": "Vallabhaneni Naga Aravind Babu",
+        "jobTitle": "Full Stack Developer",
+        "description": "Fresher full-stack developer building production-grade web apps, from geospatial maps to AI-powered tools.",
+        "url": "https://aravindvallabhaneni.dev",
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "VIT-AP University"
+        },
+        "sameAs": [
+          "https://github.com/AravindVallabhaneni",
+          "https://www.linkedin.com/in/aravind-babu-vallabhaneni/",
+          "https://drive.google.com/file/d/11am3b-B6A_K9Y3s8XUV_jgybI35Gr-pS/view?usp=drive_link"
+        ],
+        "knowsAbout": [
+          "Full Stack Web Development",
+          "React",
+          "Node.js",
+          "TypeScript",
+          "PostgreSQL",
+          "PostGIS",
+          "Supabase",
+          "Express.js",
+          "Machine Learning",
+          "Fuzzy Logic"
+        ]
+      }
+    </script>
+  </head>
+  <body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text antialiased selection:bg-accent-blue/20 selection:text-accent-cyan transition-colors duration-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

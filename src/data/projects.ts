@@ -1,0 +1,126 @@
+import { ProjectItem } from '../types';
+
+export const projectsData: ProjectItem[] = [
+  {
+    id: 'civicpulse',
+    title: 'CivicPulse',
+    tagline: 'Hyperlocal Civic Issue Tracker with PostGIS Spatial Clustering',
+    category: 'Full-Stack',
+    featured: true,
+    problem:
+      'Citizens report local community issues (potholes, overflowing garbage, broken streetlights, water pipeline leaks), but duplicate citizen reports and inefficient manual routing across municipal departments cause massive resolution delays.',
+    role: 'Full-Stack Engineer (Architecture, Spatial Clustering Engine, Real-time Subscriptions, API & Frontend)',
+    stack: [
+      'React 18',
+      'TypeScript',
+      'Node.js',
+      'Express',
+      'Supabase',
+      'PostgreSQL',
+      'PostGIS',
+      'Leaflet',
+      'OpenStreetMap',
+      'Zustand',
+      'Zod',
+      'Pino',
+      'Recharts',
+      'Tailwind CSS',
+    ],
+    highlights: [
+      'Engineered PostGIS ST_DWithin spatial clustering algorithm that automatically deduplicates reports within 150 meters and recalculates dynamic centroids.',
+      'Implemented automated municipal department routing based on incident classification and geospatial boundary zones.',
+      'Designed a multi-factor priority algorithm utilizing log-scaled vote volume combined with a continuous time-decay age factor.',
+      'Configured Postgres Row-Level Security (RLS) policies ensuring tenant isolation and role-based municipal administrative permissions.',
+      'Integrated live map updates over Supabase Realtime WebSocket subscriptions, eliminating polling overhead.',
+      'Built a background node-cron escalation worker for overdue ticket priority reweighting.',
+      'Hardened Express backend with Helmet, express-rate-limit, Zod schema validation, and unit tests covering spatial clustering logic.',
+    ],
+    result:
+      'Fully functional end-to-end deployed system. PostGIS ST_DWithin spatial clustering deduplicates reports within a 150m radius with sub-50ms query latency on the Supabase edge. Live on Vercel + Supabase.',
+    links: {
+      repo: 'https://github.com/AravindVallabhaneni/Civic-Issue-Tracker',
+      live: 'https://civic-issue-tracker-frontend.vercel.app',
+    },
+    architectureNotes: [
+      'Frontend: React 18 + Vite + Leaflet mapping with interactive clustered markers.',
+      'Backend: Express REST API with TypeScript, Pino structured logging, and Zod middleware.',
+      'Database: Supabase PostgreSQL with PostGIS extension for spatial queries and RLS for security.',
+      'Clustering: ST_DWithin distance queries with recursive cluster centroid recalculation.',
+    ],
+  },
+  {
+    id: 'resumeai',
+    title: 'ResumeAI',
+    tagline: 'AI Resume Analyzer & Job Description Matcher with Hybrid NLP',
+    category: 'Full-Stack',
+    featured: true,
+    problem:
+      'Job seekers struggle to understand how effectively their resumes match target job descriptions, frequently missing critical industry keywords and formatting requirements needed for screening filters.',
+    role: 'Full-Stack Developer (Parser Pipeline, Fuzzy Matching Engine, Groq Integration, UI & Export)',
+    stack: [
+      'React',
+      'Vite',
+      'Tailwind CSS',
+      'Node.js',
+      'Express',
+      'Supabase',
+      'PostgreSQL',
+      'Groq Llama 3.1',
+      'Fuse.js',
+      'natural (NLP)',
+      'pdf-parse',
+      'mammoth',
+      'jsPDF',
+      'Axios',
+    ],
+    highlights: [
+      'Developed drag-and-drop ingestion pipeline parsing multi-page PDF (pdf-parse) and DOCX (mammoth) files with text normalization.',
+      'Built a proprietary 300+ skill taxonomy covering 14 technical domains with Fuse.js fuzzy matching (e.g. normalizing "ReactJS" vs "React.js").',
+      'Computed comprehensive job match scores, skill coverage percentages, and targeted missing-keyword gap analysis.',
+      'Integrated Groq Llama 3.1 API for bullet-point improvement suggestions with an automatic offline rule-based NLP fallback.',
+      'Built an analysis history dashboard stored in Supabase with RLS, allowing users to track progress across job applications.',
+      'Engineered client-side multi-page PDF audit report generator using jsPDF.',
+      'Implemented rate-limiting and input sanitization to safeguard serverless and LLM token budgets.',
+    ],
+    result:
+      'Fully deployed and functional. Tested across 20+ PDF and DOCX resume formats. Fuzzy skill taxonomy correctly normalizes variations (e.g. "ReactJS" → "React.js") with a 300+ skill taxonomy spanning 14 categories. Live on Vercel.',
+    links: {
+      repo: 'https://github.com/AravindVallabhaneni/Resume-Analyzer',
+      live: 'https://resume-analyzer-mu-drab.vercel.app',
+    },
+    architectureNotes: [
+      'Parsing: Dual-engine parser handling complex text layouts and docx tables.',
+      'Matching: Hybrid scoring weighing exact keyword hits (natural), fuzzy variants (Fuse.js), and contextual relevance.',
+      'LLM Layer: High-speed Groq inference stream with resilient deterministic fallback.',
+      'Export: Tailored vector PDF generation directly in browser memory.',
+    ],
+  },
+  {
+    id: 'academic-foresight',
+    title: 'Academic Foresight',
+    tagline: 'Hybrid Student Risk Assessment via Fuzzy Logic & Genetic Algorithms',
+    category: 'AI / ML',
+    featured: true,
+    problem:
+      'Traditional academic performance metrics only identify struggling students after exam failures occur, lacking preventative early warning indicators from qualitative behavioral and engagement signals.',
+    role: 'Machine Learning Researcher & Developer',
+    stack: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Fuzzy Logic', 'Genetic Algorithms'],
+    highlights: [
+      'Formulated a hybrid predictive architecture integrating Mamdani Fuzzy Inference Systems with Genetic Algorithm parameter optimization.',
+      'Modeled non-linear student behavior variables (attendance patterns, assessment trends, assignment velocity) into linguistic membership sets.',
+      'Employed Genetic Algorithms to search and converge on optimal rule-weight configurations, maximizing predictive accuracy.',
+      'Evaluated predictive performance against classical baseline regressors and classifiers using cross-validated metrics.',
+    ],
+    result:
+      'Hybrid Fuzzy-GA model outperformed standalone classifiers on cross-validated academic dataset. Genetic Algorithm-tuned rule weights converged to lower MSE than hand-tuned baselines.',
+    links: {
+      repo: 'TODO: confirm repo link',
+      live: undefined,
+    },
+    architectureNotes: [
+      'Fuzzy Inference: Membership curves tuned for student engagement levels.',
+      'Optimization: GA chromosome representation of fuzzy rule weights evaluated against MSE.',
+      'Data Pipeline: Pandas and NumPy vectorized preprocessing and outlier filtering.',
+    ],
+  },
+];

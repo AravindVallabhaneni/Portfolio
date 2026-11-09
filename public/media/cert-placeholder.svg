@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="280" viewBox="0 0 400 280" fill="none">
+  <rect width="400" height="280" rx="12" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <circle cx="200" cy="110" r="45" fill="#21262D" stroke="#0284C7" stroke-width="3" />
+  <path d="M190 110L197 117L212 102" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="200" y="190" fill="#F0F6FC" font-family="'Space Grotesk', sans-serif" font-size="18" font-weight="600" text-anchor="middle">Verified Credential</text>
+  <text x="200" y="220" fill="#8B949E" font-family="'Inter', sans-serif" font-size="14" text-anchor="middle">TODO: Upload Certificate Badge</text>
+</svg>
+
