@@ -3,6 +3,7 @@ export interface SocialLinks {
   linkedin: string;
   email: string;
   resume: string;
+  leetcode?: string;
 }
 
 export interface Availability {

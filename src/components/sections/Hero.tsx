@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Sparkles, Send, FileText, MapPin } from 'lucide-react';
+import { ArrowDown, Sparkles, Send, FileText, MapPin, Camera, Play } from 'lucide-react';
 import { profileData } from '../../data/profile';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
@@ -14,8 +14,12 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onExploreClick, onContactClick }) => {
   const prefersReduced = useReducedMotion();
+  const [mediaMode, setMediaMode] = useState<'photo' | 'video'>('photo');
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  // Active video visibility: only when explicit Video mode is on, or actively hovered
+  const showVideo = (mediaMode === 'video' || isHovered) && videoLoaded && !prefersReduced;
 
   return (
     <section
@@ -137,7 +141,35 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onContactClick }) =>
           </div>
 
           {/* Right Column: Profile Picture + Animated Video Frame (5 cols) */}
-          <div className="lg:col-span-5 flex justify-center items-center">
+          <div className="lg:col-span-5 flex flex-col items-center justify-center space-y-4">
+            {/* Interactive Mode Switcher Pill */}
+            <div className="flex items-center gap-1.5 p-1 rounded-full bg-light-surface/90 dark:bg-dark-card/90 backdrop-blur-md border border-light-border dark:border-dark-border shadow-sm">
+              <button
+                type="button"
+                onClick={() => setMediaMode('photo')}
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium transition-all ${
+                  mediaMode === 'photo'
+                    ? 'bg-accent-blue text-white shadow-sm'
+                    : 'text-light-subtext dark:text-dark-subtext hover:text-light-heading dark:hover:text-dark-heading'
+                }`}
+              >
+                <Camera className="w-3.5 h-3.5" />
+                <span>Photo</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setMediaMode('video')}
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium transition-all ${
+                  mediaMode === 'video'
+                    ? 'bg-accent-blue text-white shadow-sm'
+                    : 'text-light-subtext dark:text-dark-subtext hover:text-light-heading dark:hover:text-dark-heading'
+                }`}
+              >
+                <Play className="w-3.5 h-3.5 fill-current" />
+                <span>Video Reel</span>
+              </button>
+            </div>
+
             <motion.div
               initial={prefersReduced ? false : { opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -150,47 +182,55 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onContactClick }) =>
               <div className="absolute -inset-2.5 rounded-3xl bg-gradient-to-r from-accent-cyan via-accent-blue to-accent-warm opacity-40 group-hover:opacity-75 blur-xl transition-all duration-500 animate-pulse-slow" />
 
               {/* Styled Frame */}
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl p-1 bg-gradient-to-b from-accent-cyan/40 via-accent-blue/20 to-accent-warm/40 shadow-2xl">
-                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-dark-surface border border-light-border dark:border-dark-border">
-                  {/* Static Poster Image (always rendered as fallback) */}
+              <div className="relative w-72 sm:w-80 lg:w-[350px] rounded-2xl p-1 bg-gradient-to-b from-accent-cyan/40 via-accent-blue/20 to-accent-warm/40 shadow-2xl">
+                <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-dark-surface border border-light-border dark:border-dark-border flex items-center justify-center">
+                  {/* Photo: High-resolution & prominent by default */}
                   <img
                     src={profileData.media.poster}
                     alt={profileData.media.alt}
                     width={480}
                     height={480}
-                    className={`w-full h-full object-cover transition-opacity duration-700 ${
-                      videoLoaded && (isHovered || !prefersReduced)
-                        ? 'opacity-0'
-                        : 'opacity-100'
+                    className={`w-full h-full object-cover object-center transition-opacity duration-500 ${
+                      showVideo ? 'opacity-0' : 'opacity-100'
                     }`}
                     loading="eager"
                   />
 
-                  {/* Looping Ambient Video (crossfades smoothly without audio) */}
+                  {/* Looping Video with object-contain: Entire 16:9 video is 100% visible, zero cropping */}
                   {!prefersReduced && (
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      poster={profileData.media.poster}
-                      aria-label="Aravind Vallabhaneni looping video presentation"
-                      onLoadedData={() => setVideoLoaded(true)}
-                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                        videoLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    <div
+                      className={`absolute inset-0 flex items-center justify-center bg-slate-950 transition-opacity duration-500 overflow-hidden ${
+                        showVideo ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'
                       }`}
                     >
-                      {profileData.media.videoWebm && (
-                        <source src={profileData.media.videoWebm} type="video/webm" />
-                      )}
-                      <source src={profileData.media.videoMp4} type="video/mp4" />
-                      Your browser does not support HTML5 video.
-                    </video>
+                      {/* Ambient background glow behind video */}
+                      <div
+                        className="absolute inset-0 bg-cover bg-center blur-xl opacity-35 scale-125 pointer-events-none"
+                        style={{ backgroundImage: `url(${profileData.media.poster})` }}
+                      />
+
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                        poster={profileData.media.poster}
+                        aria-label="Aravind Vallabhaneni video presentation"
+                        onLoadedData={() => setVideoLoaded(true)}
+                        className="relative z-10 w-full h-full object-contain"
+                      >
+                        {profileData.media.videoWebm && (
+                          <source src={profileData.media.videoWebm} type="video/webm" />
+                        )}
+                        <source src={profileData.media.videoMp4} type="video/mp4" />
+                        Your browser does not support HTML5 video.
+                      </video>
+                    </div>
                   )}
 
                   {/* Tech Watermark Overlay */}
-                  <div className="absolute bottom-3 left-3 right-3 py-1.5 px-3 rounded-lg bg-dark-bg/85 backdrop-blur-md border border-dark-border flex items-center justify-between text-[11px] font-mono text-dark-text">
+                  <div className="absolute bottom-3 left-3 right-3 py-1.5 px-3 rounded-lg bg-dark-bg/85 backdrop-blur-md border border-dark-border flex items-center justify-between text-[11px] font-mono text-dark-text z-20">
                     <span className="flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
                       Full-Stack Dev
@@ -203,7 +243,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onContactClick }) =>
               {/* Floating Interaction Hint */}
               <div className="absolute -top-3 -right-3 px-2.5 py-1 rounded-full bg-light-surface dark:bg-dark-card border border-light-border dark:border-dark-border shadow-md text-[11px] font-mono text-light-subtext dark:text-dark-subtext flex items-center gap-1 group-hover:scale-105 transition-transform">
                 <Sparkles className="w-3 h-3 text-accent-warm" />
-                <span>Hover for clip</span>
+                <span>{mediaMode === 'photo' ? 'Hover or toggle for video' : 'Looping clip active'}</span>
               </div>
             </motion.div>
           </div>
@@ -212,4 +252,3 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onContactClick }) =>
     </section>
   );
 };
-

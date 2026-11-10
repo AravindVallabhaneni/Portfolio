@@ -137,12 +137,12 @@ export const LeetCodeSection: React.FC = () => {
               </span>
             </div>
             <a
-              href="https://leetcode.com"
+              href={`https://leetcode.com/u/${import.meta.env.VITE_LEETCODE_USERNAME || 'Aravind_Vallabhaneni'}/`}
               target="_blank"
               rel="noopener noreferrer"
               className="shrink-0 inline-flex items-center gap-1 text-accent-warm hover:underline"
             >
-              <span>LeetCode</span>
+              <span>View Profile</span>
               <ExternalLink className="w-3 h-3" />
             </a>
           </div>
@@ -158,10 +158,10 @@ export const LeetCodeSection: React.FC = () => {
               </span>
               <div className="flex items-baseline gap-2">
                 <span className="text-4xl font-heading font-bold text-light-heading dark:text-dark-heading">
-                  {stats?.totalSolved ?? 285}
+                  {stats?.totalSolved ?? 131}
                 </span>
                 <span className="text-xs font-mono text-light-subtext dark:text-dark-subtext">
-                  / {stats?.totalQuestions ?? 3340}
+                  / {stats?.totalQuestions ?? 4110}
                 </span>
               </div>
             </div>
@@ -238,7 +238,7 @@ export const LeetCodeSection: React.FC = () => {
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="text-emerald-500 font-semibold">Easy</span>
                 <span className="text-light-subtext dark:text-dark-subtext">
-                  {stats?.easySolved ?? 130} / {stats?.totalEasy ?? 834}
+                  {stats?.easySolved ?? 40} / {stats?.totalEasy ?? 975}
                 </span>
               </div>
               <div className="w-full h-2.5 rounded-full bg-light-card dark:bg-dark-bg overflow-hidden border border-light-border dark:border-dark-border">
@@ -257,7 +257,7 @@ export const LeetCodeSection: React.FC = () => {
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="text-accent-warm font-semibold">Medium</span>
                 <span className="text-light-subtext dark:text-dark-subtext">
-                  {stats?.mediumSolved ?? 135} / {stats?.totalMedium ?? 1735}
+                  {stats?.mediumSolved ?? 75} / {stats?.totalMedium ?? 2146}
                 </span>
               </div>
               <div className="w-full h-2.5 rounded-full bg-light-card dark:bg-dark-bg overflow-hidden border border-light-border dark:border-dark-border">
@@ -276,7 +276,7 @@ export const LeetCodeSection: React.FC = () => {
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="text-rose-500 font-semibold">Hard</span>
                 <span className="text-light-subtext dark:text-dark-subtext">
-                  {stats?.hardSolved ?? 20} / {stats?.totalHard ?? 776}
+                  {stats?.hardSolved ?? 16} / {stats?.totalHard ?? 989}
                 </span>
               </div>
               <div className="w-full h-2.5 rounded-full bg-light-card dark:bg-dark-bg overflow-hidden border border-light-border dark:border-dark-border">

@@ -28,6 +28,7 @@ export const profileData: ProfileData = {
     linkedin: 'https://www.linkedin.com/in/aravind-babu-vallabhaneni/',
     email: 'aravindvallabhaneni10@gmail.com',
     resume: 'https://drive.google.com/file/d/11am3b-B6A_K9Y3s8XUV_jgybI35Gr-pS/view?usp=drive_link',
+    leetcode: 'https://leetcode.com/u/Aravind_Vallabhaneni/',
   },
   media: {
     poster: '/media/aravind.jpg',

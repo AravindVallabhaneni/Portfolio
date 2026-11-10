@@ -187,20 +187,20 @@ function getMockPayload(username: string) {
   }
 
   return {
-    totalSolved: 312,
-    totalQuestions: 3345,
-    easySolved: 145,
-    totalEasy: 834,
-    mediumSolved: 145,
-    totalMedium: 1735,
-    hardSolved: 22,
-    totalHard: 776,
-    acceptanceRate: 65.4,
-    ranking: 112450,
+    totalSolved: 131,
+    totalQuestions: 4110,
+    easySolved: 40,
+    totalEasy: 975,
+    mediumSolved: 75,
+    totalMedium: 2146,
+    hardSolved: 16,
+    totalHard: 989,
+    acceptanceRate: 75.7,
+    ranking: 1376258,
     submissionCalendar: calendar,
     lastUpdated: new Date().toISOString(),
-    isMock: true,
-    message: `Showing fallback preview stats for ${username}. Configure LEETCODE_USERNAME to fetch real profile.`,
+    isMock: username.includes('TODO'),
+    message: `Showing fallback preview stats for ${username}.`,
   };
 }
 

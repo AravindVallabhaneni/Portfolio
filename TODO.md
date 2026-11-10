@@ -4,88 +4,51 @@ Checked items are done. Items below are what still needs your attention.
 
 ---
 
-## 🔴 Blockers (Must complete before launch)
-
-- [ ] **Your LeetCode Username**
-  - **File:** `.env` (lines 1–2) and Vercel Dashboard → Environment Variables
-  - **Keys:** `LEETCODE_USERNAME` and `VITE_LEETCODE_USERNAME`
-  - **Action:** Replace `TODO: LEETCODE_USERNAME` with your actual LeetCode handle.
-  - **Why it matters:** Until set, the LeetCode section shows example/demo data with a yellow warning banner.
-
-- [ ] **Profile Photo**
-  - **File:** `public/media/aravind.jpg`
-  - **Action:** Drop your square portrait photo (minimum 480×480px) here, overwriting the placeholder SVG.
-  - **Also:** Optionally add `public/media/aravind.webp` (use ffmpeg command in README).
-
-- [ ] **Looping Profile Video**
-  - **File:** `public/media/aravind-loop.mp4`
-  - **Action:** Drop your 3–5 second looping video clip here. The hero crossfades to it on hover.
-  - **Compress it first (see README):** `ffmpeg -i input.mov -vf "scale=480:480:force_original_aspect_ratio=increase,crop=480:480" -c:v libx264 -crf 28 -an -movflags +faststart public/media/aravind-loop.mp4`
-
----
-
-## 🟡 Important (Affects content quality)
-
-- [ ] **Location / Work Preference**
-  - **File:** `src/data/profile.ts` → `availability.locationPreference`
-  - **Current:** `'TODO: city/remote preference'`
-  - **Action:** Set to something like `'Hyderabad / Remote (Open to Relocation)'`
+## 🟡 Remaining Action Items Before Launch
 
 - [ ] **Academic Foresight — GitHub Repo Link**
   - **File:** `src/data/projects.ts` → `academic-foresight` → `links.repo`
   - **Current:** `'TODO: confirm repo link'`
-  - **Action:** Add the actual GitHub repository URL for this project.
+  - **Action:** Add the actual GitHub repository URL for this project once ready.
 
 - [ ] **SecureLoop — GitHub Repo URL**
   - **File:** `src/data/inProgress.ts` → `secureloop` → `repoUrl`
   - **Current:** `undefined`
   - **Action:** Once you push the SecureLoop repo to GitHub, paste the URL here.
 
-- [ ] **Contact Form (Formspree)**
+- [ ] **Contact Form Verification**
   - **File:** `.env` → `VITE_FORMSPREE_ENDPOINT`
-  - **Current:** `https://formspree.io/f/TODO_FORMSPREE_ID`
-  - **Action:**
-    1. Register at [formspree.io](https://formspree.io)
-    2. Create a new form linked to `aravindvallabhaneni10@gmail.com`
-    3. Paste the endpoint (e.g. `https://formspree.io/f/abcdefgh`) into `.env` and Vercel dashboard
-  - **Fallback if skipped:** Contact form automatically opens the user's default mail client instead (graceful degradation).
+  - **Current:** Set to `https://formspree.io/f/xkjjlodj`
+  - **Action:** Send a test message on your running site to ensure emails arrive in your inbox.
 
----
-
-## 🟢 Nice to Have (Improves perception)
-
-- [ ] **Certifications**
+- [ ] **Certifications (Optional)**
   - **File:** `src/data/certifications.ts`
   - **Current:** 2 placeholder entries
   - **Options:**
-    - Replace with real certificates (AWS, Coursera, Meta, HackerRank, etc.) — add badge images to `public/media/`
-    - OR set `export const certificationsData: CertificationItem[] = []` to cleanly hide the entire section automatically
+    - Replace with real certificates (AWS, Coursera, Meta, HackerRank, etc.)
+    - OR set `export const certificationsData: CertificationItem[] = []` to cleanly hide the entire section automatically.
 
-- [ ] **Hackathons & Competition Awards**
+- [ ] **Hackathons & Competition Awards (Optional)**
   - **File:** `src/data/education.ts` → `achievementsData` array
-  - **Current:** Placeholder item for hackathons
-  - **Action:** Add any real competitive programming rankings (CodeChef / HackerRank ratings), university hackathon placements, or technical paper presentations.
+  - **Action:** Add any real competitive programming rankings (CodeChef / HackerRank ratings) or hackathon placements.
 
-- [ ] **Custom Domain**
-  - **Action:** In Vercel Project Settings → Domains, link `aravindvallabhaneni.dev` (or your chosen domain). Set DNS as described in README (A record → `76.76.21.21`, CNAME `www` → `cname.vercel-dns.com`).
+- [ ] **Custom Domain Setup on Vercel**
+  - **Action:** In Vercel Project Settings → Domains, link `aravindvallabhaneni.dev` (or your chosen domain). Set DNS records as described in README.
 
 ---
 
-## ✅ Already Done
+## ✅ Completed & Verified
 
-- [x] Removed all fabricated/invented project metrics
-- [x] CivicPulse result: honest deployed system description
-- [x] ResumeAI result: honest deployed system description
-- [x] Academic Foresight result: honest model comparison outcome
-- [x] Removed Family Finance Backend from in-progress section
-- [x] Added SecureLoop as in-progress project with full tech stack
-- [x] Profile bio, links, GitHub, LinkedIn, resume, email — all real
-- [x] Education data (VIT-AP, Narayana, Bell & Bennett) — all real
-- [x] All 3 deployed project cards (CivicPulse, ResumeAI, Academic Foresight) with live links
-- [x] LeetCode serverless pipeline with graceful fallback
-- [x] Contact form with honeypot + mailto fallback
-- [x] Dark/light theme, mobile menu, side progress rail
-- [x] TypeScript strict mode: 0 errors
-- [x] ESLint: 0 warnings
-- [x] Production build: successful
-- [x] Unit tests: 6/6 passing
+- [x] **LeetCode Integration Active & Verified**:
+  - Username configured: `Aravind_Vallabhaneni`
+  - Verified Live Stats: 131 Solved (40 Easy, 75 Medium, 16 Hard), 75.7% Acceptance, Global Rank #1,376,258, 61 Active Days, 11-day streak.
+  - Dual-layer serverless & Alfa proxy fallback with dev middleware active.
+- [x] **Hero Media Presentation Fixed**:
+  - Photo is displayed by default with full contrast and sharpness.
+  - Video fitting fixed with `object-contain` + ambient reflection: 100% of the 1280x720 video is visible without side-cropping.
+  - Added interactive mode switcher pill: `[ 📷 Photo | ▶ Video Reel ]`.
+- [x] **Location Preference**: Set to `'Relocation-ready'`.
+- [x] **Removed Family Finance project** and added **SecureLoop** with full OWASP & AI code review description.
+- [x] **Formspree Endpoint**: Configured in `.env` (`xkjjlodj`).
+- [x] **Git Repository**: Initialized on `main` branch with comprehensive `.gitignore`.
+- [x] **Tests & Build**: 6/6 tests passing, 0 TypeScript errors, 0 ESLint warnings, production build successful in 4.3s.
