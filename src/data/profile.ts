@@ -10,7 +10,7 @@ export const profileData: ProfileData = {
     'I am a B.Tech Computer Science and Engineering student at VIT-AP University (2023–2027) maintaining an 8.86/10 CGPA.',
     'I specialize in engineering robust web applications, high-throughput REST APIs, and database-backed architectures using React, Node.js, Express, and Supabase / PostgreSQL.',
     'I have shipped deployed, production-grade applications featuring geospatial PostGIS clustering, real-time sync, and LLM integrations.',
-    'Currently deepening my focus in cloud deployment strategies, advanced NLP pipelines, and end-to-end TypeScript architecture.',
+    'Currently deepening my focus in cloud deployment strategies, advanced NLP pipelines, and scalable database architectures.',
   ],
   availability: {
     status: 'available',

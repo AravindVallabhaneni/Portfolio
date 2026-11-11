@@ -12,7 +12,7 @@ export const projectsData: ProjectItem[] = [
     role: 'Full-Stack Engineer (Architecture, Spatial Clustering Engine, Real-time Subscriptions, API & Frontend)',
     stack: [
       'React 18',
-      'TypeScript',
+      'JavaScript (ES6+)',
       'Node.js',
       'Express',
       'Supabase',
@@ -43,9 +43,51 @@ export const projectsData: ProjectItem[] = [
     },
     architectureNotes: [
       'Frontend: React 18 + Vite + Leaflet mapping with interactive clustered markers.',
-      'Backend: Express REST API with TypeScript, Pino structured logging, and Zod middleware.',
+      'Backend: Express REST API with modular architecture, Pino structured logging, and Zod middleware.',
       'Database: Supabase PostgreSQL with PostGIS extension for spatial queries and RLS for security.',
       'Clustering: ST_DWithin distance queries with recursive cluster centroid recalculation.',
+    ],
+  },
+  {
+    id: 'marquee',
+    title: 'Marquee',
+    tagline: 'High-Concurrency Ticket Booking System with Atomic Seat Holds & Native WebSockets',
+    category: 'Full-Stack',
+    featured: true,
+    problem:
+      'High-concurrency ticket reservation platforms for movies and concerts face severe race conditions, double-booking, lock contention, and unfair waitlist drops during peak ticket releases.',
+    role: 'Full-Stack Developer (Concurrency Control, Atomic SQL Locking, WebSockets & Real-time Seat Map)',
+    stack: [
+      'React',
+      'Vite',
+      'Node.js',
+      'Express',
+      'PostgreSQL',
+      'WebSockets (ws)',
+      'node-cron',
+      'JWT',
+      'qrcode',
+      'Nodemailer',
+      'Tailwind CSS',
+    ],
+    highlights: [
+      'Engineered atomic seat reservation transactions using PostgreSQL row-level locks (SELECT ... FOR UPDATE ordered by seat ID to prevent deadlocks) with configurable TTL expiration.',
+      'Implemented background node-cron cleanup worker using FOR UPDATE SKIP LOCKED to release expired holds and immediately broadcast updates via native WebSockets (ws).',
+      'Designed a FIFO automated waitlist reallocation engine: when held seats expire or orders cancel, freed inventory is atomically re-held and offered to waitlisted users with time-limited tokens.',
+      'Built single-transaction checkout handling seat transition to booked, QR code generation with qrcode, and automated email confirmation with Nodemailer.',
+      'Configured role-based access control (Admin, Organiser, Customer) with JWT access/refresh rotation and email verification guards.',
+    ],
+    result:
+      'Full-stack reservation engine tested under concurrent multi-user load demos with zero race conditions, sub-second WebSocket seat synchronization, and atomic transaction guarantees.',
+    links: {
+      repo: 'https://github.com/AravindVallabhaneni/Ticket-Booking',
+      live: undefined,
+    },
+    architectureNotes: [
+      'Locking: Strict SELECT ... FOR UPDATE ordered by seat ID ensures complete isolation and prevents database deadlocks.',
+      'Worker: node-cron releases expired holds via SKIP LOCKED so transactions never block each other.',
+      'Realtime: Native WebSockets stream live seat status changes without polling overhead.',
+      'Verification: Email verification tokens gate seat reservations, ensuring authentic buyer requests.',
     ],
   },
   {
@@ -93,34 +135,6 @@ export const projectsData: ProjectItem[] = [
       'Matching: Hybrid scoring weighing exact keyword hits (natural), fuzzy variants (Fuse.js), and contextual relevance.',
       'LLM Layer: High-speed Groq inference stream with resilient deterministic fallback.',
       'Export: Tailored vector PDF generation directly in browser memory.',
-    ],
-  },
-  {
-    id: 'academic-foresight',
-    title: 'Academic Foresight',
-    tagline: 'Hybrid Student Risk Assessment via Fuzzy Logic & Genetic Algorithms',
-    category: 'AI / ML',
-    featured: true,
-    problem:
-      'Traditional academic performance metrics only identify struggling students after exam failures occur, lacking preventative early warning indicators from qualitative behavioral and engagement signals.',
-    role: 'Machine Learning Researcher & Developer',
-    stack: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Fuzzy Logic', 'Genetic Algorithms'],
-    highlights: [
-      'Formulated a hybrid predictive architecture integrating Mamdani Fuzzy Inference Systems with Genetic Algorithm parameter optimization.',
-      'Modeled non-linear student behavior variables (attendance patterns, assessment trends, assignment velocity) into linguistic membership sets.',
-      'Employed Genetic Algorithms to search and converge on optimal rule-weight configurations, maximizing predictive accuracy.',
-      'Evaluated predictive performance against classical baseline regressors and classifiers using cross-validated metrics.',
-    ],
-    result:
-      'Hybrid Fuzzy-GA model outperformed standalone classifiers on cross-validated academic dataset. Genetic Algorithm-tuned rule weights converged to lower MSE than hand-tuned baselines.',
-    links: {
-      repo: 'TODO: confirm repo link',
-      live: undefined,
-    },
-    architectureNotes: [
-      'Fuzzy Inference: Membership curves tuned for student engagement levels.',
-      'Optimization: GA chromosome representation of fuzzy rule weights evaluated against MSE.',
-      'Data Pipeline: Pandas and NumPy vectorized preprocessing and outlier filtering.',
     ],
   },
 ];

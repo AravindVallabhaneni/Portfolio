@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, MapPin, CheckCircle, Briefcase, Sparkles, Terminal } from 'lucide-react';
+import { GraduationCap, MapPin, CheckCircle, Briefcase, Sparkles, Terminal, Award, Users } from 'lucide-react';
 import { profileData } from '../../data/profile';
 import { Badge } from '../ui/Badge';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
@@ -49,7 +49,7 @@ export const About: React.FC = () => {
                 <Badge variant="cyan" size="sm">Geospatial PostGIS</Badge>
                 <Badge variant="purple" size="sm">LLM Orchestration</Badge>
                 <Badge variant="warm" size="sm">Cloud Infrastructure</Badge>
-                <Badge variant="emerald" size="sm">Strict TypeScript</Badge>
+                <Badge variant="emerald" size="sm">MongoDB &amp; SQL</Badge>
               </div>
             </div>
 
@@ -106,44 +106,61 @@ export const About: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Quick Stats Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="p-5 rounded-2xl bg-light-surface dark:bg-dark-card border border-light-border dark:border-dark-border shadow-sm text-center">
-                <span className="block font-heading font-bold text-3xl text-accent-blue dark:text-accent-cyan">
-                  2+
-                </span>
-                <span className="text-xs font-mono text-light-subtext dark:text-dark-subtext mt-1 block">
-                  Deployed Full-Stack Apps
-                </span>
+            {/* Leadership & Activities Card: Kalki Personality Development Club */}
+            <motion.div
+              whileHover={prefersReduced ? {} : { y: -3 }}
+              className="p-6 rounded-2xl bg-light-surface dark:bg-dark-card border border-light-border dark:border-dark-border shadow-sm space-y-3"
+            >
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 rounded-xl bg-accent-warm/10 text-accent-warm flex items-center justify-center">
+                  <Users className="w-5 h-5" />
+                </div>
+                <Badge variant="warm" size="sm">2 Years Leadership</Badge>
               </div>
+              <div>
+                <h3 className="font-heading font-bold text-base text-light-heading dark:text-dark-heading">
+                  Kalki Personality Development Club
+                </h3>
+                <p className="text-xs text-light-subtext dark:text-dark-subtext mt-0.5">
+                  University Student Organization
+                </p>
+              </div>
+              <div className="space-y-1.5 pt-2 border-t border-light-border dark:border-dark-border text-xs text-light-text dark:text-dark-text font-mono">
+                <p className="flex items-center gap-1.5">
+                  <span className="text-accent-cyan font-bold">&bull; 2nd Year:</span>
+                  <span>Event Management Department</span>
+                </p>
+                <p className="flex items-center gap-1.5">
+                  <span className="text-accent-blue font-bold">&bull; 1st Year:</span>
+                  <span>PR &amp; Outreach Department</span>
+                </p>
+              </div>
+            </motion.div>
 
-              <div className="p-5 rounded-2xl bg-light-surface dark:bg-dark-card border border-light-border dark:border-dark-border shadow-sm text-center">
-                <span className="block font-heading font-bold text-3xl text-accent-warm">
-                  150m
-                </span>
-                <span className="text-xs font-mono text-light-subtext dark:text-dark-subtext mt-1 block">
-                  Spatial Radius Clustering
-                </span>
+            {/* Verified Certification Card: MongoDB Associate DBA */}
+            <motion.div
+              whileHover={prefersReduced ? {} : { y: -3 }}
+              className="p-6 rounded-2xl bg-light-surface dark:bg-dark-card border border-light-border dark:border-dark-border shadow-sm space-y-3"
+            >
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                  <Award className="w-5 h-5" />
+                </div>
+                <Badge variant="emerald" size="sm">Verified DBA</Badge>
               </div>
-
-              <div className="p-5 rounded-2xl bg-light-surface dark:bg-dark-card border border-light-border dark:border-dark-border shadow-sm text-center">
-                <span className="block font-heading font-bold text-3xl text-purple-400">
-                  300+
-                </span>
-                <span className="text-xs font-mono text-light-subtext dark:text-dark-subtext mt-1 block">
-                  Skill Taxonomy Tree
-                </span>
+              <div>
+                <h3 className="font-heading font-bold text-base text-light-heading dark:text-dark-heading">
+                  MongoDB Associate Database Administrator
+                </h3>
+                <p className="text-xs text-light-subtext dark:text-dark-subtext mt-0.5">
+                  Certified by FACE Prep
+                </p>
               </div>
-
-              <div className="p-5 rounded-2xl bg-light-surface dark:bg-dark-card border border-light-border dark:border-dark-border shadow-sm text-center">
-                <span className="block font-heading font-bold text-3xl text-emerald-400">
-                  100%
-                </span>
-                <span className="text-xs font-mono text-light-subtext dark:text-dark-subtext mt-1 block">
-                  Honest Fresher Profile
-                </span>
+              <div className="pt-2 border-t border-light-border dark:border-dark-border flex items-center justify-between text-xs font-mono text-light-subtext dark:text-dark-subtext">
+                <span>Database Administration</span>
+                <span className="text-emerald-500 font-semibold">Certified</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Philosophy Box */}
             <div className="p-5 rounded-2xl bg-light-card dark:bg-dark-card border border-dashed border-light-border dark:border-dark-border text-xs text-light-subtext dark:text-dark-subtext space-y-2">
@@ -152,7 +169,7 @@ export const About: React.FC = () => {
                 Engineering Standard:
               </span>
               <p>
-                "I focus on production realities: typed interfaces, atomic database constraints, spatial indexes, unit tests, and real-time streaming over artificial complexity."
+                "I focus on production realities: atomic database constraints, spatial indexes, unit tests, and real-time streaming over artificial complexity."
               </p>
             </div>
           </div>
@@ -161,4 +178,3 @@ export const About: React.FC = () => {
     </section>
   );
 };
-

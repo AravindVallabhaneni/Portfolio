@@ -2,29 +2,18 @@ import { CertificationItem } from '../types';
 
 /**
  * Data-driven certifications collection.
- * If empty, the UI can either hide the section or display a clean developer roadmap state.
- * To add your certifications, replace or populate the items below.
+ * Real verified certification from FACE Prep.
  */
 export const certificationsData: CertificationItem[] = [
   {
-    id: 'cert-1',
-    title: 'TODO: Certification Name (e.g. Meta Front-End Developer / AWS Certified Cloud Practitioner)',
-    issuer: 'TODO: Issuer (e.g. Coursera / AWS / DeepLearning.AI)',
-    issueDate: 'TODO: Date',
-    credentialUrl: 'https://example.com/verify-credential',
+    id: 'mongodb-associate-dba',
+    title: 'MongoDB Associate Database Administrator',
+    issuer: 'FACE Prep',
+    issueDate: 'Certified',
+    credentialUrl: undefined, // Add verification link when available
     badgeImage: '/media/cert-placeholder.svg',
-    category: 'Cloud & Web',
-    description: 'TODO: Brief description of verified skills and course objectives.',
-  },
-  {
-    id: 'cert-2',
-    title: 'TODO: Machine Learning or Database Specialization',
-    issuer: 'TODO: Issuer',
-    issueDate: 'TODO: Date',
-    credentialUrl: 'https://example.com/verify-credential-2',
-    badgeImage: '/media/cert-placeholder.svg',
-    category: 'AI / Data',
-    description: 'TODO: Brief description of verified skills.',
+    category: 'Database Administration',
+    description:
+      'Comprehensive certification in MongoDB administration, architecture, document schema design, indexing strategies, aggregation pipelines, and secure database operations.',
   },
 ];
-

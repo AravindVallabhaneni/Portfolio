@@ -74,7 +74,7 @@ export const Footer: React.FC<FooterProps> = ({ onBackToTop }) => {
           <p className="flex items-center gap-1.5">
             <span>Designed &amp; Engineered with</span>
             <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
-            <span>in TypeScript, React 18 &amp; Tailwind</span>
+            <span>in React 18, Node.js &amp; Tailwind</span>
           </p>
 
           <p>&copy; {currentYear} Aravind Vallabhaneni. All rights reserved.</p>

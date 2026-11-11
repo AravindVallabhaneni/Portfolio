@@ -9,7 +9,7 @@ export const educationData: EducationItem[] = [
     score: 'CGPA: 8.86 / 10.0',
     highlights: [
       'Core coursework: Data Structures & Algorithms, Database Management Systems, Operating Systems, Computer Networks.',
-      'Active focus in modern web technologies, spatial computing, and applied machine learning heuristics.',
+      'Active focus on modern full-stack web architectures, database locking systems, and scalable backend design.',
     ],
   },
   {
@@ -36,16 +36,29 @@ export const educationData: EducationItem[] = [
 
 export const achievementsData: AchievementItem[] = [
   {
-    id: 'achieve-1',
+    id: 'leadership-kalki-2',
+    title: 'Kalki Personality Development Club — Event Management Department',
+    context:
+      'Served as a core member in the Event Management Department during 2nd year: organized campus workshops, coordinated venue logistics, schedule execution, and managed audience engagement for student empowerment events.',
+    date: '2nd Year (2024 – 2025)',
+  },
+  {
+    id: 'leadership-kalki-1',
+    title: 'Kalki Personality Development Club — PR & Outreach Department',
+    context:
+      'Worked in the Public Relations and Outreach Department during 1st year: led student engagement initiatives, inter-departmental communications, and campus awareness campaigns.',
+    date: '1st Year (2023 – 2024)',
+  },
+  {
+    id: 'academic-standing',
     title: 'Top Tier Academic Standing at VIT-AP',
-    context: 'Consistently maintaining an 8.86/10 CGPA in B.Tech Computer Science & Engineering.',
+    context: 'Consistently maintaining an 8.86/10 CGPA across B.Tech Computer Science & Engineering semesters.',
     date: '2023 – Present',
   },
   {
-    id: 'achieve-2',
-    title: 'TODO: Hackathons & Coding Competitions',
-    context: 'TODO: list any hackathons, competitive programming contests, or university technical symposium awards won.',
-    date: 'TODO: Date',
+    id: 'cert-faceprep',
+    title: 'Certified MongoDB Associate Database Administrator',
+    context: 'Achieved professional certification in MongoDB administration, schema design, and cloud database operations from FACE Prep.',
+    date: 'Certified',
   },
 ];
-

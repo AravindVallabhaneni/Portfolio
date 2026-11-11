@@ -8,7 +8,7 @@ export const inProgressProjects: InProgressProject[] = [
       'AI-assisted secure code review platform that scans repositories for OWASP vulnerabilities using Semgrep, generates targeted fixes via Gemini API, and verifies each fix by re-scanning an isolated copy before acceptance. Includes a tiered quiz system with misconception tracking and a learner dashboard — developers learn why the code was vulnerable, not just what to patch.',
     status: 'Building',
     progressPercent: 60,
-    techChips: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Semgrep', 'Gemini API'],
+    techChips: ['React', 'Node.js', 'Express', 'MongoDB', 'Semgrep', 'Gemini API'],
     repoUrl: undefined, // Add repo URL once public
     lastCommitDate: 'Recent',
   },
