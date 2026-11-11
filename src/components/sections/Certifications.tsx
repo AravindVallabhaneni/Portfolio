@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, ExternalLink, ZoomIn, X, CheckCircle2, FileText, Download } from 'lucide-react';
+import { Award, ExternalLink, ZoomIn, X, CheckCircle2, FileText, Download, Database } from 'lucide-react';
 import { certificationsData } from '../../data/certifications';
 import { Badge } from '../ui/Badge';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export const Certifications: React.FC = () => {
-  const [selectedCert, setSelectedCert] = useState<{ image: string; title: string; issuer: string } | null>(null);
+  const [selectedCert, setSelectedCert] = useState<{ id: string; image: string; title: string; issuer: string } | null>(null);
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const prefersReduced = useReducedMotion();
 
@@ -96,6 +97,7 @@ export const Certifications: React.FC = () => {
                   <div
                     onClick={() =>
                       setSelectedCert({
+                        id: cert.id,
                         image: cert.badgeImage!,
                         title: cert.title,
                         issuer: cert.issuer,
@@ -106,12 +108,25 @@ export const Certifications: React.FC = () => {
                     tabIndex={0}
                     aria-label={`Open certificate preview for ${cert.title}`}
                   >
-                    <img
-                      src={cert.badgeImage}
-                      alt={`${cert.title} preview`}
-                      className="w-full h-full object-contain rounded-lg group-hover/thumb:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
+                    {!imageErrors[cert.id] ? (
+                      <img
+                        src={cert.badgeImage}
+                        alt={`${cert.title} preview`}
+                        onError={() => setImageErrors((prev) => ({ ...prev, [cert.id]: true }))}
+                        className="w-full h-full object-contain rounded-lg group-hover/thumb:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="flex flex-col items-center justify-center text-center p-4 text-light-subtext dark:text-dark-subtext">
+                        <Database className="w-8 h-8 text-accent-cyan mb-2 opacity-80" />
+                        <span className="text-xs font-mono font-medium text-light-heading dark:text-dark-heading">
+                          Official Certificate Document
+                        </span>
+                        <span className="text-[11px] font-mono text-light-subtext dark:text-dark-subtext mt-0.5">
+                          Click to inspect
+                        </span>
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-dark-bg/60 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-mono text-xs rounded-xl backdrop-blur-sm">
                       <ZoomIn className="w-4 h-4 text-accent-cyan" />
                       <span>Inspect Certificate</span>
@@ -150,6 +165,7 @@ export const Certifications: React.FC = () => {
                     onClick={() =>
                       cert.badgeImage &&
                       setSelectedCert({
+                        id: cert.id,
                         image: cert.badgeImage,
                         title: cert.title,
                         issuer: cert.issuer,
@@ -223,11 +239,26 @@ export const Certifications: React.FC = () => {
 
               {/* Modal Image Body */}
               <div className="flex items-center justify-center py-6 bg-light-card/40 dark:bg-dark-surface/60 rounded-xl my-3 p-2">
-                <img
-                  src={selectedCert.image}
-                  alt={`${selectedCert.title} document preview`}
-                  className="max-h-[72vh] w-auto max-w-full object-contain rounded-lg shadow-lg border border-light-border dark:border-dark-border"
-                />
+                {!imageErrors[selectedCert.id] ? (
+                  <img
+                    src={selectedCert.image}
+                    alt={`${selectedCert.title} document preview`}
+                    className="max-h-[72vh] w-auto max-w-full object-contain rounded-lg shadow-lg border border-light-border dark:border-dark-border"
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center p-8 text-center">
+                    <Database className="w-12 h-12 text-accent-cyan mb-3 opacity-80" />
+                    <p className="font-heading font-bold text-base text-light-heading dark:text-dark-heading">
+                      {selectedCert.title}
+                    </p>
+                    <p className="text-xs text-light-subtext dark:text-dark-subtext mt-1 font-mono">
+                      Issued directly by {selectedCert.issuer}
+                    </p>
+                    <p className="text-xs text-accent-cyan mt-3 font-mono">
+                      Save your certificate image as public/media/mongodb-cert.png to preview it here
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Modal Footer */}

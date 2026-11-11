@@ -11,7 +11,7 @@ export const certificationsData: CertificationItem[] = [
     issuer: 'FACE Prep',
     issueDate: 'Certified',
     credentialUrl: undefined, // Document issued directly by FACE Prep
-    badgeImage: '/media/mongodb-dba-cert.svg',
+    badgeImage: '/media/mongodb-cert.png',
     category: 'Database Administration',
     description:
       'Comprehensive certification in MongoDB administration, architecture, document schema design, indexing strategies, aggregation pipelines, and secure database operations.',
