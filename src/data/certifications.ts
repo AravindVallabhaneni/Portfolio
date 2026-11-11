@@ -9,11 +9,12 @@ export const certificationsData: CertificationItem[] = [
     id: 'mongodb-associate-dba',
     title: 'MongoDB Associate Database Administrator',
     issuer: 'FACE Prep',
-    issueDate: 'Certified',
+    issueDate: 'July 2026',
     credentialUrl: undefined, // Document issued directly by FACE Prep
     badgeImage: '/media/mongodb-cert.png',
+    pdfUrl: '/media/mongodb-cert.pdf',
     category: 'Database Administration',
     description:
-      'Comprehensive certification in MongoDB administration, architecture, document schema design, indexing strategies, aggregation pipelines, and secure database operations.',
+      'Certified by FACE Prep (Reg No: 23BCE9825, Score: 74/100). Validates competency in MongoDB architecture, document schema design, indexing strategies, aggregation pipelines, and secure database operations.',
   },
 ];

@@ -157,8 +157,8 @@ export const About: React.FC = () => {
                 </p>
               </div>
               <div className="pt-2 border-t border-light-border dark:border-dark-border flex items-center justify-between text-xs font-mono text-light-subtext dark:text-dark-subtext">
-                <span>Database Administration</span>
-                <span className="text-emerald-500 font-semibold">Certified</span>
+                <span>Score: 74 / 100</span>
+                <span className="text-emerald-500 font-semibold">Verified</span>
               </div>
             </motion.div>
 

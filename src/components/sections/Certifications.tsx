@@ -6,7 +6,13 @@ import { Badge } from '../ui/Badge';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export const Certifications: React.FC = () => {
-  const [selectedCert, setSelectedCert] = useState<{ id: string; image: string; title: string; issuer: string } | null>(null);
+  const [selectedCert, setSelectedCert] = useState<{
+    id: string;
+    image: string;
+    pdfUrl?: string;
+    title: string;
+    issuer: string;
+  } | null>(null);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const prefersReduced = useReducedMotion();
@@ -99,6 +105,7 @@ export const Certifications: React.FC = () => {
                       setSelectedCert({
                         id: cert.id,
                         image: cert.badgeImage!,
+                        pdfUrl: cert.pdfUrl,
                         title: cert.title,
                         issuer: cert.issuer,
                       })
@@ -167,6 +174,7 @@ export const Certifications: React.FC = () => {
                       setSelectedCert({
                         id: cert.id,
                         image: cert.badgeImage,
+                        pdfUrl: cert.pdfUrl,
                         title: cert.title,
                         issuer: cert.issuer,
                       })
@@ -216,15 +224,27 @@ export const Certifications: React.FC = () => {
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
+                  {selectedCert.pdfUrl && (
+                    <a
+                      href={selectedCert.pdfUrl}
+                      download="MongoDB_Associate_DBA_Certificate_Aravind_Vallabhaneni.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono font-medium text-accent-blue dark:text-accent-cyan bg-accent-blue/10 dark:bg-accent-cyan/10 hover:bg-accent-blue/20 transition-colors"
+                      title="Download Official PDF Certificate"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      <span>Download PDF</span>
+                    </a>
+                  )}
                   <a
                     href={selectedCert.image}
-                    download
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg text-light-subtext dark:text-dark-subtext hover:text-accent-cyan hover:bg-light-card dark:hover:bg-dark-surface transition-colors"
-                    title="Download / Open original"
+                    title="Open full resolution in new tab"
                   >
-                    <Download className="w-4 h-4" />
+                    <ExternalLink className="w-4 h-4" />
                   </a>
                   <button
                     type="button"

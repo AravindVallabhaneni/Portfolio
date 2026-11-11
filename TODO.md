@@ -27,9 +27,10 @@ Checked items are done. Items below are what still needs your attention.
   - Replaced Academic Foresight with real deployed/developed Marquee Ticket Booking platform.
   - Linked directly to: `https://github.com/AravindVallabhaneni/Ticket-Booking`.
   - Documented PostgreSQL row-level locking (`SELECT ... FOR UPDATE`), native WebSockets (`ws`), `node-cron` TTL workers, and automated FIFO waitlist reallocation.
-- [x] **MongoDB Associate Database Administrator Certification Added**:
-  - Certified by FACE Prep.
-  - Highlighted under Certifications and About section.
+- [x] **MongoDB Associate Database Administrator Certification Added & Verified**:
+  - Official Certificate from FACE Prep: Reg No `23BCE9825`, Score `74/100`, Issue Date `03-07-2026`.
+  - High-resolution document rendering (3288x2384) active at `public/media/mongodb-cert.png` and direct PDF download at `public/media/mongodb-cert.pdf`.
+  - Highlighted under Certifications, About section, and Education achievements with full-screen Lightbox inspector.
 - [x] **2-Year Leadership in Kalki Personality Development Club Added**:
   - Year 2: Event Management Department.
   - Year 1: PR & Outreach Department.

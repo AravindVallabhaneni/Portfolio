@@ -80,6 +80,7 @@ export interface CertificationItem {
   issueDate: string;
   credentialUrl?: string;
   badgeImage?: string;
+  pdfUrl?: string;
   category: string;
   description?: string;
 }

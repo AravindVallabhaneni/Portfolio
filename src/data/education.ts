@@ -58,7 +58,8 @@ export const achievementsData: AchievementItem[] = [
   {
     id: 'cert-faceprep',
     title: 'Certified MongoDB Associate Database Administrator',
-    context: 'Achieved professional certification in MongoDB administration, schema design, and cloud database operations from FACE Prep.',
-    date: 'Certified',
+    context:
+      'Achieved official certification from FACE Prep (Reg No: 23BCE9825, Score: 74/100) validating competency in MongoDB architecture, document schema design, indexing strategies, and aggregation pipelines.',
+    date: 'July 2026',
   },
 ];
