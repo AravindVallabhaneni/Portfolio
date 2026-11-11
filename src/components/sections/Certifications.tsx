@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, ExternalLink, ZoomIn, X } from 'lucide-react';
+import { Award, ExternalLink, ZoomIn, X, CheckCircle2, FileText, Download } from 'lucide-react';
 import { certificationsData } from '../../data/certifications';
 import { Badge } from '../ui/Badge';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export const Certifications: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedCert, setSelectedCert] = useState<{ image: string; title: string; issuer: string } | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const prefersReduced = useReducedMotion();
+
+  // Close lightbox on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedCert(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // If no certifications exist, section is skipped
   if (!certificationsData || certificationsData.length === 0) {
@@ -71,7 +82,8 @@ export const Certifications: React.FC = () => {
               <div className="space-y-4">
                 {/* Header: Issuer + Date */}
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-semibold text-accent-blue dark:text-accent-cyan">
+                  <span className="text-xs font-mono font-semibold text-accent-blue dark:text-accent-cyan flex items-center gap-1.5">
+                    <FileText className="w-3.5 h-3.5 text-accent-cyan" />
                     {cert.issuer}
                   </span>
                   <span className="text-xs font-mono text-light-subtext dark:text-dark-subtext">
@@ -82,20 +94,26 @@ export const Certifications: React.FC = () => {
                 {/* Badge thumbnail preview with Lightbox trigger */}
                 {cert.badgeImage && (
                   <div
-                    onClick={() => setSelectedImage(cert.badgeImage || null)}
-                    className="relative w-full h-36 rounded-xl overflow-hidden bg-light-card dark:bg-dark-surface border border-light-border dark:border-dark-border cursor-pointer group/thumb flex items-center justify-center"
+                    onClick={() =>
+                      setSelectedCert({
+                        image: cert.badgeImage!,
+                        title: cert.title,
+                        issuer: cert.issuer,
+                      })
+                    }
+                    className="relative w-full h-40 rounded-xl overflow-hidden bg-light-card dark:bg-dark-surface border border-light-border dark:border-dark-border cursor-pointer group/thumb flex items-center justify-center p-2"
                     role="button"
                     tabIndex={0}
                     aria-label={`Open certificate preview for ${cert.title}`}
                   >
                     <img
                       src={cert.badgeImage}
-                      alt={`${cert.title} badge preview`}
-                      className="w-full h-full object-contain p-2 group-hover/thumb:scale-105 transition-transform duration-300"
+                      alt={`${cert.title} preview`}
+                      className="w-full h-full object-contain rounded-lg group-hover/thumb:scale-105 transition-transform duration-300"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-dark-bg/40 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center text-white gap-1.5 font-mono text-xs">
-                      <ZoomIn className="w-4 h-4" />
+                    <div className="absolute inset-0 bg-dark-bg/60 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-mono text-xs rounded-xl backdrop-blur-sm">
+                      <ZoomIn className="w-4 h-4 text-accent-cyan" />
                       <span>Inspect Certificate</span>
                     </div>
                   </div>
@@ -114,7 +132,7 @@ export const Certifications: React.FC = () => {
                 </div>
               </div>
 
-              {/* Verify Link */}
+              {/* Verify Link or View Certificate Action */}
               <div className="pt-4 mt-6 border-t border-light-border dark:border-dark-border flex items-center justify-between">
                 {cert.credentialUrl ? (
                   <a
@@ -127,9 +145,22 @@ export const Certifications: React.FC = () => {
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 ) : (
-                  <span className="text-xs font-mono text-light-subtext dark:text-dark-subtext">
-                    Credential Pending Verification
-                  </span>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      cert.badgeImage &&
+                      setSelectedCert({
+                        image: cert.badgeImage,
+                        title: cert.title,
+                        issuer: cert.issuer,
+                      })
+                    }
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-accent-blue dark:text-accent-cyan hover:underline group/btn focus:outline-none"
+                  >
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                    <span>View Certificate</span>
+                    <ZoomIn className="w-3 h-3 opacity-70 group-hover/btn:opacity-100 transition-opacity" />
+                  </button>
                 )}
                 <Badge variant="outline" size="sm">
                   {cert.category}
@@ -142,39 +173,70 @@ export const Certifications: React.FC = () => {
 
       {/* Certificate Lightbox Modal */}
       <AnimatePresence>
-        {selectedImage && (
+        {selectedCert && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
-            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+            onClick={() => setSelectedCert(null)}
             role="dialog"
             aria-modal="true"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-3xl w-full bg-light-surface dark:bg-dark-card rounded-2xl overflow-hidden border border-light-border dark:border-dark-border p-4 shadow-2xl"
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="relative max-w-4xl w-full bg-light-surface dark:bg-dark-card rounded-2xl overflow-hidden border border-light-border dark:border-dark-border p-5 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Modal Header */}
               <div className="flex items-center justify-between pb-3 border-b border-light-border dark:border-dark-border">
-                <span className="font-heading font-bold text-sm text-light-heading dark:text-dark-heading">
-                  Certificate Document Preview
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setSelectedImage(null)}
-                  className="p-1 rounded-lg text-light-subtext dark:text-dark-subtext hover:text-light-heading dark:hover:text-dark-heading"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                  <span className="font-heading font-bold text-sm text-light-heading dark:text-dark-heading">
+                    {selectedCert.title}
+                  </span>
+                  <span className="text-xs font-mono text-light-subtext dark:text-dark-subtext">
+                    ({selectedCert.issuer})
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={selectedCert.image}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg text-light-subtext dark:text-dark-subtext hover:text-accent-cyan hover:bg-light-card dark:hover:bg-dark-surface transition-colors"
+                    title="Download / Open original"
+                  >
+                    <Download className="w-4 h-4" />
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCert(null)}
+                    className="p-1.5 rounded-lg text-light-subtext dark:text-dark-subtext hover:text-light-heading dark:hover:text-dark-heading hover:bg-light-card dark:hover:bg-dark-surface transition-colors"
+                    title="Close preview (Esc)"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
 
-              <div className="flex items-center justify-center py-6">
+              {/* Modal Image Body */}
+              <div className="flex items-center justify-center py-6 bg-light-card/40 dark:bg-dark-surface/60 rounded-xl my-3 p-2">
                 <img
-                  src={selectedImage}
-                  alt="Enlarged certificate preview"
-                  className="max-h-[70vh] w-auto object-contain rounded-lg shadow-md"
+                  src={selectedCert.image}
+                  alt={`${selectedCert.title} document preview`}
+                  className="max-h-[72vh] w-auto max-w-full object-contain rounded-lg shadow-lg border border-light-border dark:border-dark-border"
                 />
+              </div>
+
+              {/* Modal Footer */}
+              <div className="flex items-center justify-between pt-2 text-xs font-mono text-light-subtext dark:text-dark-subtext">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  Official Certificate Document
+                </span>
+                <span>Press Esc to close</span>
               </div>
             </motion.div>
           </div>

@@ -10,8 +10,8 @@ export const certificationsData: CertificationItem[] = [
     title: 'MongoDB Associate Database Administrator',
     issuer: 'FACE Prep',
     issueDate: 'Certified',
-    credentialUrl: undefined, // Add verification link when available
-    badgeImage: '/media/cert-placeholder.svg',
+    credentialUrl: undefined, // Document issued directly by FACE Prep
+    badgeImage: '/media/mongodb-dba-cert.svg',
     category: 'Database Administration',
     description:
       'Comprehensive certification in MongoDB administration, architecture, document schema design, indexing strategies, aggregation pipelines, and secure database operations.',
