@@ -19,7 +19,7 @@ export const inProgressProjects: InProgressProject[] = [
       'High-performance personal web platform featuring 3D card deck interactions, serverless LeetCode sync, and zero-shift theme switching.',
     status: 'Building',
     progressPercent: 95,
-    techChips: ['React 18', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel Serverless'],
+    techChips: ['React 18', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Vercel Serverless'],
     repoUrl: 'https://github.com/AravindVallabhaneni/Portfolio',
     lastCommitDate: 'Today',
   },
